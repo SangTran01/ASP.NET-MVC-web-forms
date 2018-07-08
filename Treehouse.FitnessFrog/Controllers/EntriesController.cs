@@ -41,6 +41,20 @@ namespace Treehouse.FitnessFrog.Controllers
 
         public ActionResult Add()
         {
+            //WOULD WORK BUT THERES A BETTER WAY
+            //if (Request.HttpMethod == "Post")
+            //{
+
+            //}
+            //else {
+                    
+            //}
+            return View();
+        }
+
+        [ActionName("Add"), HttpPost]
+        public ActionResult AddPost()
+        {
             return View();
         }
 
