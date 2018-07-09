@@ -41,25 +41,22 @@ namespace Treehouse.FitnessFrog.Controllers
 
         public ActionResult Add()
         {
-            //WOULD WORK BUT THERES A BETTER WAY
-            //if (Request.HttpMethod == "Post")
-            //{
-
-            //}
-            //else {
-                    
-            //}
-            return View();
+            Entry entry = new Entry();
+            entry.Date = DateTime.Now;
+            return View(entry);
         }
 
         //Model Binding post data automatically goes to arguments to be used
         [HttpPost]
-        public ActionResult Add(DateTime? date,
-            int? activityId, double? duration, 
-            Entry.IntensityLevel? intensity, bool? exclude, 
-            string notes)
+        public ActionResult Add(Entry entry)
         {
-            return View();
+            if (ModelState.IsValid) {
+                _entriesRepository.AddEntry(entry);
+
+                //TODO: DIsplay the entries page
+                return RedirectToAction("Index");
+            }
+            return View(entry);
         }
 
         public ActionResult Edit(int? id)
