@@ -55,6 +55,13 @@ namespace Treehouse.FitnessFrog.Controllers
         [HttpPost]
         public ActionResult Add(Entry entry)
         {
+            //serverside validation
+            //checks if duration is not empty and greater than or equal 0
+            if (ModelState.IsValidField("Duration") && entry.Duration <= 0) {
+                ModelState.AddModelError("Duration", "The Duration field value must be greater than 0.");
+            }
+
+
             if (ModelState.IsValid) {
                 _entriesRepository.AddEntry(entry);
 
